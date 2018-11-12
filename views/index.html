@@ -1,107 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>DELI-VERY</title>
-        <meta charset="utf-8"/>
-        <link rel="stylesheet" type="text/css" href="css/style.css">
+      <script src="https://vuejs.org/js/vue.js"></script>
+      <script src="js/js_script.js"></script>
+      <link rel="stylesheet" type="text/css" href="css/style.css">
+      <title>DELIVERY</title>
     </head>
-    <body>
-        <main>
-            <header>
-                <img src="img/header.jpg">
-                <h1>Ape Burger Joint</h1>
-            </header>
-            
-            <section id="selection" class="selection">
-                <h2>Select Burger</h2>
 
-                <table>
-                    <thead>
-                        <tr>
-                            <td><h3>Vanilla Burger</h3></td>
-                            <td><h3>Choclate Burger</h3></td>
-                            <td><h3>Salty Burger</h3></td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><img src="img/burger.jpg"></td>
-                            <td><img src="img/burger.jpg"></td>
-                            <td><img src="img/burger.jpg"></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <ul>
-                                    <li>Spicy</li>
-                                    <li>Bright</li>
-                                    <li>Greasy</li>
-                                </ul>
-                            </td>
-                            <td>
-                                <ul>
-                                    <li>Dark</li>
-                                    <li>Firey</li>
-                                    <li>Light</li>
-                                </ul>
-                            </td>
-                            <td>
-                                <ul>
-                                    <li>Hot</li>
-                                    <li>Cold</li>
-                                    <li>Balanced</li>
-                                </ul>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            
-            </section>
-           
-            <section id="delivery" class="delivery">
-                <h2>Customer Information</h2>
-                <form>
-                    <p>
-                        <label for="fullname">Full name</label><br />
-                        <input type="text" id="fullname" name="fn" required="required" placeholder="Full name">
-                    </p>
-                    <p>
-                        <label for="email">Email</label><br />
-                        <input type="email" id="email" name="em" required="required" placeholder="Email">
-                    </p>
-                    <p>
-                        <label for="street">Street</label><br />
-                        <input type="text" id="street" name="st" required="required" placeholder="Street">
-                    </p>
-                    <p>
-                        <label for="house">House</label><br />
-                        <input type="text" id="house" name="ho" required="required" placeholder="House">
-                    </p>
-                    <p>
-                        <label for="payment">Payment</label><br>
-                        <select id="payment" name="pay">
-                            <option>Credit card</option>
-                            <option>Swish</option>
-                        </select>
-                    </p>
-                    Gender
-                    <p>
-                        <input type="radio" id="male" name="ge" required="required" placeholder="Male">
-                        <label for="male">Male</label><br />
-                        <input type="radio" id="female" name="ge" required="required" placeholder="Female">
-                        <label for="female">Female</label><br />
-                        <input type="radio" id="nogender" name="ge" required="required" placeholder="None">
-                        <label for="nogender">Dont wanan say</label><br />
-                    </p>
+  <body>
 
-                </form>
-            </section>
-            
-            <button id="sendbutton" type="submit"><img src="img/send.png">Send order</button>
-            
+    <section class = header>
+      <section id = header>
+      <h1>Welcome to BurgerOnline!</h1>
+      </section>
+      <img src="http://storstadenbostad.se/app/uploads/2017/03/bun_meat_bun-827x315.jpg" id = "bild" alt="Span" title="Another in-line element" width="100%">
+    </section>
+
+<main>
+
+  <section class = "burgers " id = burgers>
+    <h2>Our burgers: </h2>
+    <div>Select one of our delicious burgers</div>
+
+    <div class = "wrapper ">
+     <div class="box a">
+       <h3>Original burger</h3>
+       <img src="https://www.max.se/ImageVaultFiles/id_702/cf_22/Burgers-Beefburger.jpg" alt="Span" title="Another in-line element" width="100">
+       <li>Freshly baked bread, beef and mayonnaise</li>
+       <section class = "allergy" id="allergy">
+         <li> Contains gluten and lactose </li>
+      </section>
+      <li>756 kcal</li>
+    </div>
+
+    <div class="box b">
+    <h3>Cheeseburger</h3>
+    <img src="https://www.max.se/ImageVaultFiles/id_703/cf_22/Burgers-Cheeseburger.jpg" alt="Span" title="Another in-line element" width="100">
+    <li>Freshly baked bread, beef, cheese and mayonnaise</li>
+    <section class = "allergy" id="allergy">
+      <li> Contains gluten and lactose </li>
+   </section>
+    <li>800 kcal</li>
+    </div>
+
+     <div class="box c">
+     <h3>Veggie burger</h3>
+     <img src="https://www.max.se/ImageVaultFiles/id_2443/cf_14/Burgers-Halloumi.jpg" alt="Span" title="Another in-line element" width="100">
+     <li>Freshly baked bread, halloumi and mayonnaise</li>
+     <section class = "allergy" id="allergy">
+       <li> Contains gluten and lactose </li>
+     </section>
+     <li>650 kcal</li>
+    </div>
+
+  </section>
+
+    <section class = "customerinfo" id = CI >
+
+      <h2>Customer information </h2>
+      <div>Please fill in your delivery information: </div>
+      <p>
+        <label for="Name">Full name</label><br>
+        <input type="text" id="Fullname" name="fn" required="required" placeholder="First- and Last name">
+      </p>
+
+      <p>
+        <label for="E-mail">E-mail</label><br>
+        <input type="email" id="email" name="em" required="required" placeholder="E-mail address">
+      </p>
+
+      <p>
+        <label for="Street">Street</label><br>
+        <input type="text" id="street" name="st" required="required" placeholder="Street name">
+      </p>
+
+      <p>
+        <label for="House">House</label><br>
+        <input type="text" id="House" name="h" required="required" placeholder="House number">
+      </p>
+      <p>
+          <label for="Payment">Payment options</label><br>
+          <select id="Payment" name="pay">
+              <option> Credit card </option>
+              <option>Swich </option>
+              <option>By credit card when delivered</option>
+              <option>By cash when delivered </option>
+
+          </select>
+
+        </p>
+        <p>
+        <label for="gender">Gender</label><br>
+        <input type="radio" id="gender" name="gender" value="male"> Male<br>
+        <input type="radio" id="gender" name="gender" value="female"> Female<br>
+        <input type="radio" id="gender" name="gender" value="other"> Do not wish to provide
+      </p>
+
+</section>
+
+<button type="submit"><img src="./static/1md034/img/html/image_button.png"> Send </button>
+
+
         </main>
-        <footer>
-            <hr>
-            &copy; 2018 Ape Productions
-        </footer>
+
     </body>
+<br></br>
+
+  <footer> ©BurgerOnline
+  </footer>
+
 </html>
