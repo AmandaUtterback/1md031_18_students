@@ -1,112 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-      <script src="https://vuejs.org/js/vue.js"></script>
-      <script src="js/js_script.js"></script>
-      <link rel="stylesheet" type="text/css" href="css/style.css">
-      <title>DELIVERY</title>
-    </head>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/deli-very.css">
+  <script src="/socket.io/socket.io.js" defer></script>
+  <script  src="js/menu.js" type="text/javascript"></script>
+  <script src="https://vuejs.org/js/vue.js"></script>
+  <script src="js/vue_script.js" defer></script>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <title>DELIVERY</title>
 
-  <body>
+</head>
 
-    <section class = header>
-      <section id = header>
+
+<body>
+  <div id = "vue">
+  <section class = header>
+    <section id = "header">
       <h1>Welcome to BurgerOnline!</h1>
-      </section>
-      <img src="http://storstadenbostad.se/app/uploads/2017/03/bun_meat_bun-827x315.jpg" id = "bild" alt="Span" title="Another in-line element" width="100%">
     </section>
-
-<main>
-
-  <section class = "burgers " id = burgers>
-    <h2>Our burgers: </h2>
-    <div>Select one of our delicious burgers</div>
-
-    <div class = "wrapper ">
-     <div class="box a">
-       <h3>Original burger</h3>
-       <img src="https://www.max.se/ImageVaultFiles/id_702/cf_22/Burgers-Beefburger.jpg" alt="Span" title="Another in-line element" width="100">
-       <li>Freshly baked bread, beef and mayonnaise</li>
-       <section class = "allergy" id="allergy">
-         <li> Contains gluten and lactose </li>
-      </section>
-      <li>756 kcal</li>
-    </div>
-
-    <div class="box b">
-    <h3>Cheeseburger</h3>
-    <img src="https://www.max.se/ImageVaultFiles/id_703/cf_22/Burgers-Cheeseburger.jpg" alt="Span" title="Another in-line element" width="100">
-    <li>Freshly baked bread, beef, cheese and mayonnaise</li>
-    <section class = "allergy" id="allergy">
-      <li> Contains gluten and lactose </li>
-   </section>
-    <li>800 kcal</li>
-    </div>
-
-     <div class="box c">
-     <h3>Veggie burger</h3>
-     <img src="https://www.max.se/ImageVaultFiles/id_2443/cf_14/Burgers-Halloumi.jpg" alt="Span" title="Another in-line element" width="100">
-     <li>Freshly baked bread, halloumi and mayonnaise</li>
-     <section class = "allergy" id="allergy">
-       <li> Contains gluten and lactose </li>
-     </section>
-     <li>650 kcal</li>
-    </div>
-
+    <img src="http://storstadenbostad.se/app/uploads/2017/03/bun_meat_bun-827x315.jpg" id = "bild" alt="Span" title="Another in-line element" width="100%">
   </section>
+  <main>
 
-    <section class = "customerinfo" id = CI >
+    <section class = "burgers " id = "burgers">
+      <h2>Our burgers:</h2>
+      <div>Select one of our delicious burgers</div>
 
-      <h2>Customer information </h2>
-      <div>Please fill in your delivery information: </div>
-      <p>
-        <label for="Name">Full name</label><br>
-        <input type="text" id="Fullname" name="fn" required="required" placeholder="First- and Last name">
-      </p>
+      <div class="box" id="burgerList">
 
-      <p>
-        <label for="E-mail">E-mail</label><br>
-        <input type="email" id="email" name="em" required="required" placeholder="E-mail address">
-      </p>
+        <div style="display:flex; flex-wrap:wrap; justify-content:space-between;">
 
-      <p>
-        <label for="Street">Street</label><br>
-        <input type="text" id="street" name="st" required="required" placeholder="Street name">
-      </p>
+            <div v-for = "burger in item" style="width:150px; text-align:center; padding: 10px 15px;">
+              <h3>{{ burger.name }}</h3>
+              <img :src="burger.bild" alt="Span" title="Another in-line element" width="100">
+              <p>{{ burger.ingredients}} </p>
+              <p>{{ burger.kCal }}</p>
+              <p class = "allergy" id="allergy" v-if= "burger.gluten"> Contains gluten </p>
+              <p class = "allergy" id="allergy" v-if= "burger.lactose"> Contains lactose </p>
+              <input type="checkbox" id="checkbox" name="check" :value="burger.name" v-model="checkedBurgers"> <br>
+            </div>
 
-      <p>
-        <label for="House">House</label><br>
-        <input type="text" id="House" name="h" required="required" placeholder="House number">
-      </p>
-      <p>
-          <label for="Payment">Payment options</label><br>
-          <select id="Payment" name="pay">
-              <option> Credit card </option>
-              <option>Swich </option>
-              <option>By credit card when delivered</option>
-              <option>By cash when delivered </option>
+        </div>
 
-          </select>
 
-        </p>
-        <p>
-        <label for="gender">Gender</label><br>
-        <input type="radio" id="gender" name="gender" value="male"> Male<br>
-        <input type="radio" id="gender" name="gender" value="female"> Female<br>
-        <input type="radio" id="gender" name="gender" value="other"> Do not wish to provide
-      </p>
+        <!-- <ul > -->
+          <!-- <ol v-for="burger in burgers">
+            <h3>{{ burger.name }}</h3>
+            <img :src="burger.bild" alt="Span" title="Another in-line element" width="100">
+            <p>{{ burger.ingredients }} </p>
+            <p>{{ burger.kCal }}</p>
+            <p class = "allergy" id="allergy" v-if= "burger.gluten"> Contains gluten </p>
+            <p class = "allergy" id="allergy" v-if= "burger.lactose"> Contains lactose </p>
+          </li>
+        </ol> -->
+
+
+      <!--div class = "wrapper ">
+      <div class="box a" id= "a">
+      <h3 id = "b1">Original burger</h3>
+      <img src="https://www.max.se/ImageVaultFiles/id_702/cf_22/Burgers-Beefburger.jpg" alt="Span" title="Another in-line element" width="100">
+      <li id = "c1">Freshly baked bread, beef and mayonnaise</li>
+      <section class = "allergy" id="allergy">
+      <li> Contains gluten and lactose </li>
+    </section>
+    <li id =cal1 >756 kcal</li>
+  </div>
+
+  <div class="box b">
+  <h3>Cheeseburger</h3>
+  <img src="https://www.max.se/ImageVaultFiles/id_703/cf_22/Burgers-Cheeseburger.jpg" alt="Span" title="Another in-line element" width="100">
+  <li>Freshly baked bread, beef, cheese and mayonnaise</li>
+  <section class = "allergy" id="allergy">
+  <li> Contains gluten and lactose </li>
+</section>
+<li>800 kcal</li>
+</div>
+
+<div class="box c">
+<h3>Veggie burger</h3>
+<img src="https://www.max.se/ImageVaultFiles/id_2443/cf_14/Burgers-Halloumi.jpg" alt="Span" title="Another in-line element" width="100">
+<li>Freshly baked bread, halloumi and mayonnaise</li>
+<section class = "allergy" id="allergy">
+<li> Contains gluten and lactose </li>
+</section>
+<li>650 kcal</li>
+</div-->
 
 </section>
 
-<button type="submit"><img src="./static/1md034/img/html/image_button.png"> Send </button>
+<section class = "customerinfo" id = "CI" >
+
+  <h2>Customer information </h2>
+  <div >Please fill in your delivery information: </div>
+  <p>
+    <label for="Name">Full name</label><br>
+    <input v-model="customerInfo[0]" type="text" id="Fullname" name="fn" required="required" placeholder="First- and Last name">
 
 
-        </main>
+  </p>
 
-    </body>
+  <p>
+    <label for="E-mail">E-mail</label><br>
+    <input v-model="customerInfo[1]" type="email" id="email" name="em" required="required" placeholder="E-mail address" >
+
+  </p>
+
+  <p>
+    <label for="Payment">Payment options</label><br>
+    <select v-model="customerInfo[2]" id="Payment" name="pay" >
+      <option> Credit card </option>
+      <option>Swish </option>
+      <option>By credit card when delivered</option>
+      <option>By cash when delivered </option>
+    </select>
+
+  </p>
+  <p>
+    <label for="gender">Gender</label><br>
+    <input v-model="customerInfo[3]" type="radio" id="gender1" name="gender" value="male"> Male<br>
+    <input v-model="customerInfo[3]" type="radio" id="gender2" name="gender" value="female"> Female<br>
+    <input v-model="customerInfo[3]" type="radio" id="gender3" name="gender" value="Do not wish to provide"> Do not wish to provide
+  </p>
+
+
+  <p>Click on the map to indicate your location: </p>
+
+  <div class="view-box">
+    <div id="dots" v-on:click="displayOrder">
+        <div
+          v-for="(order, key) in orders"
+          v-bind:style="{ left: order.details.x + 'px', top: order.details.y + 'px'}">
+          {{key}}
+        </div>
+    </div>
+  </div>
+
+<h4>Order:</h4>
+
+  <ul>
+    <li v-for ="checked in checkedBurgers" >{{checked}}</li>
+  </ul>
+
+  <h4>Customer information:</h4>
+
+  <ul>
+    <li v-for ="checked in customerInfo" >{{checked}}</li>
+  </ul>
+
+  <button v-on:click="say('sent'); addOrder(); isHidden=false" type="button" id="sendbutton" >
+  		 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXMjH2wb9SkbgEA1ovmMNI8LjX-i1jx9Rj7muQTCUXuv_x1xju" width="10">
+  Send 
+</button>
+  </div>
+
+
+</section>
+
+
+</section>
+
+</main>
+</div>
 <br></br>
-
-  <footer> ©BurgerOnline
-  </footer>
-
+<footer> © 2018 BurgerOnline
+</footer>
+</body>
 </html>
