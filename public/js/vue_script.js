@@ -5,28 +5,14 @@ var vm = new Vue({
   data: {
 
     orders: {},
-    order: {},
+    order: {x: 0, y: 0},
     item: food,
-    isHidden: true,
+    isHidden: false,
     checkedBurgers: [],
     customerInfo: [],
 
   },
-  created: function () {
-    socket.on('initialize', function (data) {
-      this.orders = data.orders;
-    }.bind(this));
-
-    socket.on('currentQueue', function (data) {
-      this.orders = data.orders;
-    }.bind(this));
-  },
-
   methods: {
-    say: function (message) {
-      console.log(message)
-    },
-
 
     getNext: function () {
       var lastOrder = Object.keys(this.orders).reduce(function (last, next) {

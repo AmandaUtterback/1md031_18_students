@@ -16,21 +16,21 @@
 
 <body>
   <div id = "vue">
-  <section class = header>
-    <section id = "header">
-      <h1>Welcome to BurgerOnline!</h1>
+    <section class = header>
+      <section id = "header">
+        <h1>Welcome to BurgerOnline!</h1>
+      </section>
+      <img src="http://storstadenbostad.se/app/uploads/2017/03/bun_meat_bun-827x315.jpg" id = "bild" alt="Span" title="Another in-line element" width="100%">
     </section>
-    <img src="http://storstadenbostad.se/app/uploads/2017/03/bun_meat_bun-827x315.jpg" id = "bild" alt="Span" title="Another in-line element" width="100%">
-  </section>
-  <main>
+    <main>
 
-    <section class = "burgers " id = "burgers">
-      <h2>Our burgers:</h2>
-      <div>Select one of our delicious burgers</div>
+      <section class = "burgers " id = "burgers">
+        <h2>Our burgers:</h2>
+        <div>Select one of our delicious burgers</div>
 
-      <div class="box" id="burgerList">
+        <div class="box" id="burgerList">
 
-        <div style="display:flex; flex-wrap:wrap; justify-content:space-between;">
+          <div style="display:flex; flex-wrap:wrap; justify-content:space-between;">
 
             <div v-for = "burger in item" style="width:150px; text-align:center; padding: 10px 15px;">
               <h3>{{ burger.name }}</h3>
@@ -42,19 +42,19 @@
               <input type="checkbox" id="checkbox" name="check" :value="burger.name" v-model="checkedBurgers"> <br>
             </div>
 
-        </div>
+          </div>
 
 
-        <!-- <ul > -->
+          <!-- <ul > -->
           <!-- <ol v-for="burger in burgers">
-            <h3>{{ burger.name }}</h3>
-            <img :src="burger.bild" alt="Span" title="Another in-line element" width="100">
-            <p>{{ burger.ingredients }} </p>
-            <p>{{ burger.kCal }}</p>
-            <p class = "allergy" id="allergy" v-if= "burger.gluten"> Contains gluten </p>
-            <p class = "allergy" id="allergy" v-if= "burger.lactose"> Contains lactose </p>
-          </li>
-        </ol> -->
+          <h3>{{ burger.name }}</h3>
+          <img :src="burger.bild" alt="Span" title="Another in-line element" width="100">
+          <p>{{ burger.ingredients }} </p>
+          <p>{{ burger.kCal }}</p>
+          <p class = "allergy" id="allergy" v-if= "burger.gluten"> Contains gluten </p>
+          <p class = "allergy" id="allergy" v-if= "burger.lactose"> Contains lactose </p>
+        </li>
+      </ol> -->
 
 
       <!--div class = "wrapper ">
@@ -129,40 +129,46 @@
 
   <div class="view-box">
     <div id="dots" v-on:click="displayOrder">
-        <div
-          v-for="(order, key) in orders"
-          v-bind:style="{ left: order.details.x + 'px', top: order.details.y + 'px'}">
-          {{key}}
-        </div>
+      <div
+      v-bind:style="{ left: order.x + 'px', top: order.y + 'px'}">
+      T
     </div>
   </div>
+</div>
 
-<h4>Order:</h4>
+
+<button v-on:click="addOrder(); isHidden=true" type="button" id="sendbutton" >
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXMjH2wb9SkbgEA1ovmMNI8LjX-i1jx9Rj7muQTCUXuv_x1xju" width="10">
+  Send
+</button>
+
+<div v-if = "isHidden">
+
+  <h4>Order summary::</h4>
 
   <ul>
     <li v-for ="checked in checkedBurgers" >{{checked}}</li>
   </ul>
 
-  <h4>Customer information:</h4>
+  <h4>Delivery information:</h4>
 
   <ul>
     <li v-for ="checked in customerInfo" >{{checked}}</li>
   </ul>
 
-  <button v-on:click="say('sent'); addOrder(); isHidden=false" type="button" id="sendbutton" >
-  		 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXMjH2wb9SkbgEA1ovmMNI8LjX-i1jx9Rj7muQTCUXuv_x1xju" width="10">
-  Send 
-</button>
-  </div>
+</div>
 
+</div>
+</div>
 
 </section>
 
-
 </section>
+
+</div>
 
 </main>
-</div>
+
 <br></br>
 <footer> © 2018 BurgerOnline
 </footer>
